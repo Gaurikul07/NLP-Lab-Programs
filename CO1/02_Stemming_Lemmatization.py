@@ -1,8 +1,4 @@
-
-# Program 2: Stemming and Lemmatization
-
 import nltk
-
 nltk.download("punkt")
 nltk.download("punkt_tab")
 nltk.download("wordnet")
@@ -15,7 +11,6 @@ text = "The students are studying hard. They studied different topics and are ru
 
 words = word_tokenize(text)
 
-# Stemming
 stemmer = PorterStemmer()
 stemmed_words = [stemmer.stem(word) for word in words]
 
@@ -25,7 +20,6 @@ print(words)
 print("\nStemmed Words:")
 print(stemmed_words)
 
-# Lemmatization
 lemmatizer = WordNetLemmatizer()
 lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
 
