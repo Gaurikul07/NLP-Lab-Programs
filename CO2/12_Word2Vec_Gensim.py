@@ -1,9 +1,4 @@
-
-# Program 12: Word2Vec Word Embeddings using Gensim
-
 from gensim.models import Word2Vec
-
-# Custom corpus
 sentences = [
     ["natural", "language", "processing", "is", "interesting"],
     ["natural", "language", "processing", "is", "useful"],
@@ -11,8 +6,6 @@ sentences = [
     ["machine", "learning", "is", "useful"],
     ["deep", "learning", "is", "a", "part", "of", "machine", "learning"]
 ]
-
-# Train Word2Vec model
 model = Word2Vec(
     sentences,
     vector_size=50,
@@ -23,14 +16,12 @@ model = Word2Vec(
 
 print("========== WORD2VEC WORD EMBEDDINGS ==========")
 
-# Display vector for a word
 word = "learning"
 
 print("\nWord:", word)
 print("Vector:")
 print(model.wv[word])
 
-# Find similar words
 print("\n========== SIMILAR WORDS ==========")
 
 similar_words = model.wv.most_similar("learning", topn=3)
