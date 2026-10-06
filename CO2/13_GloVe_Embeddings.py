@@ -1,13 +1,7 @@
-
-# Program 13: GloVe Embeddings Loading and Vector Representation
-
 import numpy as np
 
-# Load GloVe embeddings
-# Make sure the GloVe file is available in the Colab working directory
 glove_file = "glove.6B.50d.txt"
 
-# Load embeddings
 embeddings = {}
 
 with open(glove_file, "r", encoding="utf-8") as f:
@@ -19,7 +13,6 @@ with open(glove_file, "r", encoding="utf-8") as f:
 
 print("========== GLOVE EMBEDDINGS ==========")
 
-# Select a word
 word = "computer"
 
 if word in embeddings:
@@ -29,6 +22,5 @@ if word in embeddings:
 else:
     print("Word not found in GloVe vocabulary.")
 
-# Display vector dimension
 if word in embeddings:
     print("\nVector Dimension:", len(embeddings[word]))
