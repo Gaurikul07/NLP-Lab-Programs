@@ -1,9 +1,4 @@
-
-# Program 19: Opinion Mining on Product/Service Reviews Dataset
-
 from textblob import TextBlob
-
-# Sample product and service reviews
 reviews = [
     "This mobile phone has an excellent camera and great battery life.",
     "The product quality is poor and the battery drains quickly.",
@@ -19,10 +14,7 @@ negative = 0
 neutral = 0
 
 for review in reviews:
-    # Calculate sentiment polarity
     polarity = TextBlob(review).sentiment.polarity
-
-    # Classify the review
     if polarity > 0:
         sentiment = "Positive"
         positive += 1
@@ -36,8 +28,6 @@ for review in reviews:
     print("\nReview:", review)
     print("Polarity:", round(polarity, 2))
     print("Opinion:", sentiment)
-
-# Display summary
 print("\n========== REVIEW SUMMARY ==========")
 print("Positive Reviews:", positive)
 print("Negative Reviews:", negative)
