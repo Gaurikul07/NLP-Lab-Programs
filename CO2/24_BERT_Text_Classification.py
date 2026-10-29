@@ -1,6 +1,3 @@
-
-# Program 24: Fine-Tuning BERT for Text Classification
-
 import numpy as np
 import torch
 from transformers import (
@@ -11,8 +8,6 @@ from transformers import (
 )
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-
-# Small sample dataset
 texts = [
     "I love this movie",
     "The film was excellent",
@@ -25,23 +20,15 @@ texts = [
     "I disliked the story",
     "The experience was disappointing"
 ]
-
-# Labels: 1 = Positive, 0 = Negative
 labels = [1, 1, 1, 1, 1, 0, 0, 0, 0, 0]
-
-# Load pretrained BERT tokenizer
 model_name = "bert-base-uncased"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-
-# Tokenize text
 encodings = tokenizer(
     texts,
     truncation=True,
     padding=True,
     max_length=64
 )
-
-# Prepare a PyTorch dataset
 class ReviewDataset(torch.utils.data.Dataset):
     def __init__(self, encodings, labels):
         self.encodings = encodings
@@ -57,8 +44,6 @@ class ReviewDataset(torch.utils.data.Dataset):
         }
         item["labels"] = torch.tensor(self.labels[index])
         return item
-
-# Split data into training and testing sets
 indices = list(range(len(texts)))
 train_indices, test_indices = train_test_split(
     indices,
@@ -87,16 +72,12 @@ model = AutoModelForSequenceClassification.from_pretrained(
     model_name,
     num_labels=2
 )
-
-# Calculate accuracy
 def compute_metrics(eval_pred):
     logits, true_labels = eval_pred
     predictions = np.argmax(logits, axis=-1)
     return {
         "accuracy": accuracy_score(true_labels, predictions)
     }
-
-# Training settings
 training_args = TrainingArguments(
     output_dir="./bert_results",
     num_train_epochs=2,
@@ -107,8 +88,6 @@ training_args = TrainingArguments(
     logging_steps=1,
     report_to="none"
 )
-
-# Fine-tune BERT
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -122,8 +101,6 @@ trainer.train()
 
 print("\n========== MODEL EVALUATION ==========")
 print(trainer.evaluate())
-
-# Predict sentiment for a new review
 new_text = "This movie was fantastic!"
 inputs = tokenizer(
     new_text,
