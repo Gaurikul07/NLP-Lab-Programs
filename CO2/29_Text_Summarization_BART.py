@@ -1,15 +1,11 @@
 
-# Program 29: Text Summarization using BART
+!pip install -q transformers torch
 
 from transformers import pipeline
-
-# Load pretrained summarization model
 summarizer = pipeline(
     "summarization",
     model="facebook/bart-large-cnn"
 )
-
-# Input document
 text = """
 Artificial Intelligence is transforming many industries.
 It is used in healthcare, education, transportation,
@@ -19,8 +15,6 @@ Machine learning and deep learning are important parts
 of AI. However, AI systems must be developed responsibly
 to ensure fairness, privacy, and reliability.
 """
-
-# Generate summary
 result = summarizer(
     text,
     max_length=60,
