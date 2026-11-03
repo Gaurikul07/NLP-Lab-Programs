@@ -71,6 +71,3 @@ NLP-Lab-Programs/
 - Explore deep learning and transformer-based models.
 - Implement practical NLP applications.
 
-## Author
-
-NLP Lab Coursework
